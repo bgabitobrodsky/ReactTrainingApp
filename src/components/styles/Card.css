@@ -1,0 +1,15 @@
+.card img{
+    width: 100px;
+}
+.card{
+    max-width: 500px;
+    border-radius: 5px;
+    background-size: cover;
+}
+
+.bg-violet{
+    background-image: url('https://miro.medium.com/max/1501/1*dP81IJq-tGFxy1rIK3RYsg.png');
+}
+.bg-2{
+    background-image: url('https://static.vecteezy.com/system/resources/previews/000/693/323/non_2x/abstract-gradient-pink-purple-stripes-on-purple-background-vector.jpg');
+}
