@@ -2,16 +2,11 @@ import React from 'react';
 import "./styles/Card.css";
 
 export default class Card extends React.Component{
-    
-    
-
     render(){
-        const {title,description,img,bg} = this.props;
-
+        const {bg,title,description,img} = this.props
         return(
             <div className="container card my-2 mx-auto"
                 style={{
-                    
                         backgroundImage:`url(${bg || 'https://miro.medium.com/max/1501/1*dP81IJq-tGFxy1rIK3RYsg.png'})`
                 }}
             >

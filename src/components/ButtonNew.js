@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const ButtonNew =()=> (
         <div className="text-center">
-                    <Link to="/excercises/new" className="btn btn-warning">+</Link>
+                    <Link to="/exercises/new" className="btn btn-warning">+</Link>
         </div>
 )
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import ExercisesForm from '../components/ExercisesForm';
-import Card from '../components/Card';
+import FatalError from './500';
+import Loader from '../components/Loader';
+import ExerciseNew from './ExerciseNew';
 
-export default class ExcercisesNew extends React.Component{
+export default class ExercisesNewContainer extends React.Component{
 
     state = {
         form: {
@@ -10,11 +11,16 @@ export default class ExcercisesNew extends React.Component{
             description : '',
             img : '',
             bg : ''
-        }
+        },
+        loading: false,
+        error: null
     }
 
     handleSubmit = async (event)=> {
         event.preventDefault();
+        this.setState({
+            loading : true
+        })
         try {
             let config = {
                 method : 'POST',
@@ -26,11 +32,15 @@ export default class ExcercisesNew extends React.Component{
             }
 
             let res = await fetch('http://localhost:8000/api/exercises', config);
-            let json = await res.json();
-            console.log(json);
-
+            this.setState({
+                loading : false
+            })
+            this.props.history.push('/exercises')
         } catch (error) {
-            
+            this.setState({
+                loading : false,
+                error
+            })
         }
     }
 
@@ -44,21 +54,14 @@ export default class ExcercisesNew extends React.Component{
     }  
 
     render(){
-        return(
-            <div className="row">
-                <div className="col-sm">
-                    <Card
-                        {...this.state.form}
-                    />
-                </div>
-                <div className="col-sm">
-                    <ExercisesForm 
-                        onChange={this.handleChange}
-                        onSubmit={this.handleSubmit}
-                        form={this.state.form}
-                    />
-                </div>
-            </div>
-        )
+        if(this.state.loading)
+			return <Loader/>;
+        if(this.state.error)
+			return <FatalError/>;
+        return <ExerciseNew
+            form = {this.state.form}
+            onChange = {this.handleChange}
+            onSubmit = {this.handleSubmit}
+        />
     }
 }
